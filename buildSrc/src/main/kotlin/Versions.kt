@@ -29,6 +29,7 @@ object Versions {
     const val navigationCompose = "2.4.0-alpha02"
     const val accompanist = "0.10.0"
     const val constraintLayout = "1.0.0-alpha07"
+    const val swiperefresh = "0.16.0"
 
     // di
     const val hiltCore = "2.38.1"

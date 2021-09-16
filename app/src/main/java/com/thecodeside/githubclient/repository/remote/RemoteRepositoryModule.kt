@@ -21,6 +21,7 @@ import javax.inject.Singleton
  * There is no official API for GitHub Trending Repositories (it is one of the internal GitHub API’s).
  * Therefore I used most popular third-party API that scrape the info from that trending section.
  * https://github.com/xxdongs/github-trending
+ * I wanted to make two API's(official and scrape one) at the end, but time run out.
  */
 private const val BASE_URL = "https://trendings.herokuapp.com"
 

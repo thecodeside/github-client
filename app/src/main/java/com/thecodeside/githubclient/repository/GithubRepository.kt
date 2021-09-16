@@ -5,7 +5,7 @@ import com.thecodeside.githubclient.repository.model.TrendingRepositories
 import com.thecodeside.githubclient.repository.remote.RemoteGithubDataSource
 import javax.inject.Inject
 
-// TODO: 07/31/21 split repository between features
+// TODO: 07.08.2021  split repository between features
 class GithubRepository @Inject constructor(
     private val localGithubDataSource: LocalGithubDataSource,
     private val remoteGithubDataSource: RemoteGithubDataSource

@@ -6,6 +6,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class TrendingRepositories(
     val count: Int,
-    val items: List<GithubRepository>,
+    val items: List<RepositoryDetails>,
     val msg: String
 )

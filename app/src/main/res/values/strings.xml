@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Github Client</string>
     <string name="no_items">There is no items</string>
-    <string name="accesibility_star">Star</string>
-
+    <string name="accessibility_star">Star</string>
+    <string name="unknown_error">Unknown error occurred</string>
+    <string name="network_error">Network error. Check internet connection</string>
+    <string name="refresh">Refresh</string>
 </resources>

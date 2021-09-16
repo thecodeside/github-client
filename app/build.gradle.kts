@@ -5,6 +5,7 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("kotlin-parcelize")
     id("io.gitlab.arturbosch.detekt").version(Versions.detekt)
     id("de.mannodermaus.android-junit5")
     id("com.github.ben-manes.versions").version(Versions.dependencyUpdates)
@@ -51,6 +52,7 @@ android {
     }
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
         kotlinOptions.freeCompilerArgs += "-Xopt-in=org.mylibrary.OptInAnnotation"
+        kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
     }
     packagingOptions {
         resources {
@@ -68,10 +70,7 @@ dependencies {
     implementation("androidx.compose.material:material:${Versions.jetpackCompose}")
     implementation("androidx.activity:activity-compose:${Versions.activityCompose}")
     implementation("androidx.constraintlayout:constraintlayout-compose:${Versions.constraintLayout}")
-
-    // Material design icons
-    implementation("androidx.compose.material:material-icons-core:${Versions.jetpackCompose}")
-    implementation("androidx.compose.material:material-icons-extended:${Versions.jetpackCompose}")
+    implementation("com.google.accompanist:accompanist-swiperefresh:${Versions.swiperefresh}")
 
     implementation("androidx.navigation:navigation-compose:${Versions.navigationCompose}")
     implementation("com.google.accompanist:accompanist-insets:${Versions.accompanist}")
@@ -81,8 +80,6 @@ dependencies {
     implementation("androidx.appcompat:appcompat:${Versions.appCompat}")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}")
-    implementation("androidx.navigation:navigation-fragment-ktx:${Versions.navigation}")
-    implementation("androidx.navigation:navigation-ui-ktx:${Versions.navigation}")
 
     //hilt
     implementation("com.google.dagger:hilt-android:${Versions.hiltCore}")
@@ -95,16 +92,12 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.jsonSerialization}")
 
-    // coil
-    implementation("io.coil-kt:coil:${Versions.coil}")
-
     //utils
     implementation("com.jakewharton.timber:timber:${Versions.timber}")
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:${Versions.detekt}")
 
     //tests
     testImplementation("org.junit.jupiter:junit-jupiter-api:${Versions.junit5}")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:${Versions.junit5}")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${Versions.junit5}")
     testImplementation("com.github.thecodeside:timber-junit5-extension:${Versions.timberJunit5}")

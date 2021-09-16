@@ -14,41 +14,40 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.thecodeside.githubclient.R
-import com.thecodeside.githubclient.repository.model.GithubRepository
+import com.thecodeside.githubclient.repository.model.RepositoryDetails
 
 @Composable
-fun TrendingRepositoriesData(
-    repositories: List<GithubRepository>,
-    onItemClickListener: (GithubRepository) -> Unit
+fun TrendingRepositoriesList(
+    repositories: List<RepositoryDetails>,
+    onItemClickListener: (RepositoryDetails) -> Unit,
 ) {
-    SwipeRefresh(
-        state = rememberSwipeRefreshState(isRefreshing),
-        onRefresh = { viewModel.refresh() },
+    // TODO: 06.08.2021 - Restrict max width for better look on tablet or portrait mode
+    LazyColumn(
+        contentPadding = PaddingValues(16.dp)
     ) {
-        LazyColumn(
-            contentPadding = PaddingValues(16.dp)
-        ) {
-            itemsIndexed(
-                items = repositories,
-                itemContent = { index, item ->
-                    RepositoryItem(repository = item, onItemClickListener)
-                    if (index < repositories.size - 1)
-                        Divider(
-                            color = Color.Transparent,
-                            thickness = 8.dp
-                        )
-                },
-            )
-        }
+        itemsIndexed(
+            items = repositories,
+            itemContent = { index, item ->
+                RepositoryItem(repository = item, onItemClickListener)
+                if (index < repositories.size - 1)
+                    Divider(
+                        color = Color.Transparent,
+                        thickness = 8.dp
+                    )
+            },
+        )
     }
 }
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun RepositoryItem(repository: GithubRepository, onItemClickListener: (GithubRepository) -> Unit) {
+fun RepositoryItem(
+    repository: RepositoryDetails,
+    onItemClickListener: (RepositoryDetails) -> Unit
+) {
     Card(
         onClick = {
-            onItemClickListener.invoke(repository)
+            onItemClickListener(repository)
         },
         backgroundColor = MaterialTheme.colors.surface,
         modifier = Modifier.fillMaxWidth(),
@@ -66,7 +65,7 @@ fun RepositoryItem(repository: GithubRepository, onItemClickListener: (GithubRep
             Row {
                 Image(
                     painter = painterResource(R.drawable.ic_baseline_star_rate_24),
-                    contentDescription = stringResource(R.string.accesibility_star),
+                    contentDescription = stringResource(R.string.accessibility_star),
                     colorFilter = ColorFilter.tint(MaterialTheme.colors.primary),
                 )
                 Text(
@@ -81,7 +80,7 @@ fun RepositoryItem(repository: GithubRepository, onItemClickListener: (GithubRep
 @Preview
 @Composable
 fun PreviewTrendingRepositoriesData() {
-    val repository = GithubRepository(
+    val repository = RepositoryDetails(
         addedStars = "12",
         avatars = emptyList<String>(),
         desc = "Description",
@@ -91,5 +90,5 @@ fun PreviewTrendingRepositoriesData() {
         repoLink = "www.link.com",
         stars = "31"
     )
-    TrendingRepositoriesData(repositories = listOf(repository, repository, repository)) {}
+    TrendingRepositoriesList(repositories = listOf(repository, repository, repository)) {}
 }

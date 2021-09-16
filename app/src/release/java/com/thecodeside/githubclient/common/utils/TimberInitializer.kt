@@ -6,6 +6,6 @@ import timber.log.Timber
 object TimberInitializer {
 
     fun init() {
-        // TODO: 07/31/21 init Timber for relase. Setup Crashlytics, etc.
+        // TODO: 06.08.2021 init Timber for relase. Setup Crashlytics, etc.
     }
 }

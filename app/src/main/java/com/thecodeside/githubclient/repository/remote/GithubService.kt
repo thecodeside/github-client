@@ -6,9 +6,5 @@ import retrofit2.http.GET
 interface GithubService {
 
     @GET("repo")
-    suspend fun getTrendingRepositories(
-//        @Query("language") language: String? = null,
-//        @Query("since") since: String? = null,
-//        @Query("spoken_language_code") spokenLanguageCode: String? = null
-    ): TrendingRepositories
+    suspend fun getTrendingRepositories(): TrendingRepositories
 }
